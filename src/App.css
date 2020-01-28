@@ -1,38 +1,359 @@
 .App {
   text-align: center;
+  background-color: rgb(0, 0, 0)
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1, h2, h3, h4, h5, p, ul, button{
+  margin: 0;
+  padding: 0;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a{
+  list-style: none;
+  text-decoration: none;
+  color:white;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+.allresults{
+  display:flex;
   flex-direction: column;
-  align-items: center;
+}
+.movie{
+display:flex;
+}
+.poster{
+  width:100%;
+}
+.headerFlex{
+ display:flex; 
+ justify-content: space-between;
+}
+header .title a {
+  text-decoration: none;
+  color:rgb(255, 255, 255);
+  font-size: 1.6em;
+}
+.searchBar{
+  display:none;
+}
+header{
+  position: relative;
+  background-color: rgb(19, 19, 19);
+}
+.show{
+display:block;
+position: absolute;
+top:0;
+width:100%;
+
+}
+#menuBtn{
+  background-color: rgba(255, 255, 255, 0);
+  border:none;
+}
+.searchImg{
+  width:60px;
+}
+#searchField{
+  width:80%;
+  padding: 26px;
+  background-color: rgb(32, 32, 32);
+  color:white;
+  border:none;
+
+}
+.searchBox{
+  width:100%;
+  display:flex;
+  
+}
+#hideBtn{
+  width:15%;
+  padding: 0;
+  margin: 0;
+  background-color: rgb(32, 32, 32);
+  border:none;
+}
+#menuBtn svg{
+  width:50px;
+}
+#main-nav button{
+background-color: rgba(255, 255, 255, 0);
+border:none;
+}
+svg{
+  background-color: rgba(0, 0, 0, 0);
+  fill:white;
+  width:30;
+}
+#searchButton{
+  width:50px;
+  background-color: rgb(19, 19, 19);
+  fill:rgba(255, 255, 255, 0);
+  border:none;
+}
+.resultlist{
+  position: absolute;
+  z-index: 1999;
+  background-color: rgb(32, 32, 32);
+  width:100%;
+}
+.resultlist ul li a{
+text-decoration: none;
+color:rgb(255, 255, 255);
+
+}
+.resultlist ul{
+  margin: 0;
+  padding: 0;
+}
+.resultlist ul li{
+  list-style: none;
+  display:flex;
+}
+.resultlist ul a{
+  list-style: none;
+}
+.searchInfo{
+  display:flex;
+  flex-direction: column;
+}
+.searchInfo p {
+  color:white;
+  list-style: none;
+}
+.resultlist li:hover{
+  background-color: grey;
+}
+.main-nav{
+  
+  position: absolute;
+  left:-60%;
+  z-index: 9999;
+  color:white;
+  width:60%;
+  height:100vh;
+  background-color: black;
+}
+.reveal{
+  left:0;
+}
+.backdrop{
+  width:100%;
+  
+}
+.hero .poster{
+  width:20%;
+}
+.hero{
+  width:100%;
+  position: relative;
+  max-height: 60vh;
+  
+}
+.hero .backdrop{
+  filter:brightness(.7);
+  
+  object-fit: cover;
+  object-position: 0 0;
+}
+.hero .poster{
+  display:none; 
+  position: absolute;
+  width:30%;
+  left:30px;
+  top:50px;
+}
+.hero .words{
+  position: absolute;
+  width:50%;
+  right: 10%;
+  top:25%;
+  color:white;
+  display:flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.hero h2{
+  font-size:2em;
+}
+.hero .words p{
+font-size:1.3em;
+
+}
+.hero a{
+  width:100%;
+  height:100%;
+  z-index: 1000;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+.seeMore {
+  color:white;
+  
+  background-color: rgba(128, 128, 128, 0.692);
+}
+.featuredmovies{
+  z-index: 100000;
+  background-color: black;
+  display:flex;
+  justify-content: space-evenly;
+  flex-wrap:wrap;
+
+}
+.movie{
+  
+  width:46%;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+  margin-top: 16px;
+  filter:drop-shadow(8px 8px 10px black);
+}
+@media screen and (min-width: 750px) {
+  .movie{
+    width:32%
+  }
+  
+}
+@media screen and (min-width: 1000px) {
+  .movie{
+    width:24%
+  }
+  
+}
+@media screen and (min-width: 1280px) {
+  .movie{
+    width:19%
+  }
+  
+}
+.movie img{
+  width:100%;
+  height:auto;
+}
+.reccomended{
+  width:80%;
 }
 
-.App-link {
-  color: #61dafb;
+.movie a:hover{
+  color:white;
+  background-color: rgba(0, 0, 0, 0.664);
+  
+  height:100%;
+}
+.movie a{
+  width:100%;
+  height:100%;
+  position: relative;
+  bottom:0;
+  color:white;
+  text-decoration: none;
+  
+  background-color: rgba(92, 92, 92, 0);
+}
+.current-movies{
+  color:white;
+  font-size: 1.4em;
+  z-index: 1200;
+  
+}
+.overview{
+  z-index:999;
+  position: absolute;
+  top:0;
+  width:100%;
+  height:100%;
+  font-size:1em;
+  color:rgba(255, 255, 255, 0);
+}
+.overview p {
+  font-size: .8em;
+  padding-top: 10px;
+}
+.overview:hover{
+  color:white;
+  background-color: rgba(0, 0, 0, 0.753);
+}
+.moreinfo{
+  width:100%;
+ color:white;
+ position: absolute;
+ bottom:0;
+ font-size:1.5em;
+ background-color: rgba(128, 128, 128, 0.589);
+ z-index: 1111;
+
+}
+.single{
+  background-color: white;
+  max-width: 1200px;
+  margin: auto;
+  
+}
+.single p{
+  color:rgb(255, 255, 255);
+}
+.single h5{
+  color:white;
+}
+.single .backdrop{
+  
+  
+  max-height:50vh;
+  object-fit: cover;
+  object-position: 0 0;
+}
+/* .single-wrapper{
+  position: relative;
+}
+.single .single-wrapper .poster{
+  position: absolute;
+  width:150px;
+  top:50%;
+} */
+.single-hero{
+  position: relative;
+  
+}
+.single-main{
+  display:flex;
+  padding-top: 10px;
+}
+.single-main .poster{
+  padding-left: 10px;
+  width:40%;
+  
+}
+.single{
+  background-color: rgb(0, 0, 0);
+  color:white;
+}
+.single-main-content{
+  padding: 10px;
+}
+@media screen and (min-width: 1240px) {
+  .single-main .poster{
+    padding-left: 0;
+  }
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#addToFavorites{
+  background-color: rgb(255, 255, 255);
+  border:none;
+  color:rgb(0, 0, 0);
+  padding: 8px;
+  border-radius: 50px;
+}
+#addToFavorites:hover{
+  background-color: rgb(156, 156, 156);
+}
+.slick-slider{
+  padding-bottom: 20px;
+}
+.slick-dots{
+  position: absolute;
+  bottom:0;
+}
+
+.footer{
+  background-color: black;
+  color:white;
 }
