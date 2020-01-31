@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import Hero from './hero';
 
+
 const Results = () => {
     
-    const movieOfTheDay = 278;
+    
     const [results, setResults] = useState([]);
+    
+    const typeToDisplay = 'now_playing';
     
     useEffect(()=> {
         
         const getMovies = async () => {
-            const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=aa9e4fb9176c3cfe803a8ef198c28c23&language=en-US&page=1`);
+            const res = await fetch(`https://api.themoviedb.org/3/movie/${typeToDisplay}?api_key=aa9e4fb9176c3cfe803a8ef198c28c23&language=en-US&page=1`);
             let data = await res.json();
             
             let movies = data.results.map((mov)=>{
                 return(
                     <div className="movie" key={mov.id}>
                          <a href={"single/"+mov.id}>
-                        <img className="poster" src={"https://image.tmdb.org/t/p/w500" + mov.poster_path} alt="misc" />
+                        <img className="poster" src={"https://image.tmdb.org/t/p/w342" + mov.poster_path} alt="misc" />
                         
                         
                        
@@ -35,15 +38,16 @@ const Results = () => {
             
         }
         getMovies();
-    }, [])
+    }, [typeToDisplay])
     
         return(
         <div>
-            <Hero movieOfTheDay={movieOfTheDay} />
-            
+            <Hero />
+          
             <div className="featuredmovies">
                 {results}
             </div>
+            
             
             
         </div>

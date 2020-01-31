@@ -12,7 +12,7 @@ const Search = () => {
     
 
     
-        if(document.getElementById('searchField').value == ''){
+        if(document.getElementById('searchField').value === ''){
             setInput('');
         }
 
@@ -21,9 +21,9 @@ const Search = () => {
   const searchFast = () => {
     
     
-    console.log(document.getElementById('searchField').value)
+    
 
-    if((document.getElementById('searchField').value) == ''){
+    if((document.getElementById('searchField').value) === ''){
       var newQuery = '';
       
     }else{
@@ -35,13 +35,13 @@ const Search = () => {
     setInput(newQuery)
     
   }
-  console.log(input);
+  
   useEffect(()=> {
     
     // var queries = input.toString();
     var queries = Array.prototype.join.call(input, " ");
-    console.log("queries ", queries);
-    if(queries == ''){
+    
+    if(queries === ''){
       
       setResults(empty);
       return;
@@ -50,7 +50,7 @@ const Search = () => {
       
       
     }
-    console.log('queries', queries);
+    
     const getResults = async () => {
       
       // var legit = queries.join('%20');
@@ -62,7 +62,7 @@ const Search = () => {
       let movies = data.results.slice(0, 5).map((mov)=>{
           
           return(
-              <a href={"/single/" + mov.id}>
+              <a href={"/single/" + mov.id} key={mov.id}>
               <li>
                 <div>
                  <img className="searchImg" src={"https://image.tmdb.org/t/p/w500" + mov.poster_path} /> 
