@@ -30,7 +30,10 @@ const Single = () => {
 
             let genres = mov.genres.map((genre)=>{
                 return(
-                    <p key={genre.id}>{genre.name}</p>
+                    
+                        <p key={genre.id}>{genre.name}</p>
+                    
+                    
                 )
             })
             setGenres(genres);
@@ -50,9 +53,8 @@ const Single = () => {
             let actors = data.credits.cast.slice(0, 6).map((act)=>{
                 return(
                     <div className="actor" key={act.id}>
-                        
-                            <img src={"https://image.tmdb.org/t/p/w185" + act.profile_path} />
-                        
+                        <img src={"https://image.tmdb.org/t/p/w185" + act.profile_path} />
+                        <h3>{act.name}</h3>
                     </div>
                 )
             })
@@ -86,24 +88,42 @@ const Single = () => {
     }, [movieId]);
 
     
+    // const addToStorage = () => {
+    
+	
+    //     var existing = localStorage.getItem('favorites');
+
+    //     // If no existing data, create an array
+    //     // Otherwise, convert the localStorage string to an array
+    //     existing = existing ? JSON.parse(existing) : {};
+        
+    //     const value = {
+    //         id:single.id,
+    //         image:single.poster_path
+    //     }
+    //     // Add new data to localStorage Array
+    //     existing[single.id] = value;
+
+    //     // Save back to localStorage
+    //     localStorage.setItem('favorites', JSON.stringify(existing));
+    // }
     const addToStorage = () => {
     
 	
-        var existing = localStorage.getItem('favorites');
-
-        // If no existing data, create an array
-        // Otherwise, convert the localStorage string to an array
-        existing = existing ? JSON.parse(existing) : {};
+        // Parse any JSON previously stored in allEntries
+    var existingEntries = JSON.parse(localStorage.getItem("favorites"));
+    if(existingEntries == null) existingEntries = [];
+    // var entryTitle = document.getElementById("entryTitle").value;
+    // var entryText = document.getElementById("entryText").value;
+    // var entry = {
+    //     "title": entryTitle,
+    //     "text": entryText
+    // };
+    // localStorage.setItem("entry", JSON.stringify(single));
+    // Save allEntries back to local storage
+    existingEntries.push(single);
+    localStorage.setItem("favorites", JSON.stringify(existingEntries));
         
-        const value = {
-            id:single.id,
-            image:single.poster_path
-        }
-        // Add new data to localStorage Array
-        existing[single.id] = value;
-
-        // Save back to localStorage
-        localStorage.setItem('favorites', JSON.stringify(existing));
     }
 
     return(
@@ -118,14 +138,21 @@ const Single = () => {
                 </div>
                 <div className="single-main">
                     <img className="poster" src={"https://image.tmdb.org/t/p/w342" + single.poster_path} alt="misc" />
-                    <div className="single-main-content">  
-                        <h3 className="movietitle">{single.title} ({single.release_date})</h3>
-                        <p>{single.vote_average}</p>
+                    <div className="single-main-content">
+                        <div className="single-header">
+                            <p className="single-vote">{single.vote_average}</p>  
+                            <h3 className="movietitle">{single.title}<br /> ({single.release_date})</h3>
+                        </div>
+                  
+                        
                         {certificate}
-                        {genres}
+                        <div className="genres-all">
+                           {genres} 
+                        </div>
+                        <p>Runtime: {single.runtime} Minutes</p>
                         <p>{single.overview}</p>
-                        <p>{single.id}</p>
-                        <p>{single.runtime} Minutes</p>
+                        {/* <p>{single.id}</p> */}
+                        
                         <input type="button" value="Add to Favorites" id="addToFavorites" onClick={addToStorage} />
                     </div>
                 </div>
@@ -133,20 +160,20 @@ const Single = () => {
                 
                 
             </div>
+            <h2>Cast</h2>
             <div className="all-actors">
                 {actors}
             </div>
+            <h2>Trailer</h2>
             {video}
-            <h3>Related Movies</h3>
+            <h2>Related Movies</h2>
             <Slider {...settings}>
                 
-               {reccomended} 
+            {reccomended} 
             </Slider>
             
             
-            <div className="">
-
-            </div>
+           
         </div>
         )
 

@@ -5,7 +5,7 @@ import Footer from './components/footer';
 
 import CustomAutocomplete from './components/search';
 import Single from './components/single';
-import Results from './components/results';
+import Funnel from './components/funnel';
 import Favorites from './components/favorites';
 import './App.css';
 
@@ -22,9 +22,9 @@ function App() {
       </header>
       
       
-      <Route path="/" exact><Results /></Route>
+      <Route path="/" exact><Funnel /></Route>
       <Route path="/single"><Single /></Route>
-      <Route path="/result"><Results /></Route>
+      <Route path="/result"><Funnel /></Route>
       <Route path="/favorites"><Favorites /></Route>
       <Footer />
     </div>

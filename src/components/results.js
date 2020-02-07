@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Hero from './hero';
 
 
-const Results = () => {
+const Results = (props) => {
     
     
     const [results, setResults] = useState([]);
     
-    const typeToDisplay = 'now_playing';
+    const typeToDisplay = props.query;
     
-    useEffect(()=> {
+    useEffect((props)=> {
         
         const getMovies = async () => {
             const res = await fetch(`https://api.themoviedb.org/3/movie/${typeToDisplay}?api_key=aa9e4fb9176c3cfe803a8ef198c28c23&language=en-US&page=1`);
@@ -24,9 +24,10 @@ const Results = () => {
                         
                        
                             <div className="overview">
+                                
                                 <h3 className="movietitle">{mov.title} ({mov.release_date.split("-").slice(0,1)})</h3>
                                 
-                                <p>{mov.overview}</p>
+                                <p>{mov.overview.substring(0, 300)}{mov.overview.length > 300 ? "..." : ''}</p>
                                 
                             </div>
                             <p className="moreinfo">More Info</p>

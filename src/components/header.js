@@ -9,6 +9,7 @@ const Header = () => {
     }
     const addNav = () => {
         var addNav = document.getElementById('main-nav');
+        document.body.classList.add('stop-scroll');
         addNav.classList.add('reveal');
     }
     return(
