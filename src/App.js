@@ -14,7 +14,7 @@ function App() {
   
 
   return (
-    <Router>
+    <Router basename='/website/movie-app'  >
     <div className="App">
       <header>
         <Header />
@@ -23,9 +23,9 @@ function App() {
       
       
       <Route path="/" exact><Funnel /></Route>
-      <Route path="/single"><Single /></Route>
-      <Route path="/result"><Funnel /></Route>
-      <Route path="/favorites"><Favorites /></Route>
+      <Route path="/website/movie-app/single"><Single /></Route>
+      <Route path="/website/movie-app/result"><Funnel /></Route>
+      <Route path="/website/movie-app/favorites"><Favorites /></Route>
       <Footer />
     </div>
     </Router>

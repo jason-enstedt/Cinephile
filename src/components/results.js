@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Hero from './hero';
+import {Link} from "react-router-dom";
 
 
 const Results = (props) => {
@@ -7,31 +7,35 @@ const Results = (props) => {
     
     const [results, setResults] = useState([]);
     
-    const typeToDisplay = props.query;
     
-    useEffect((props)=> {
+
+    const genrequery = "&with_genres=" + props.genre; 
+
+    const sortquery = "&sort_by=" + props.sort;
+    
+    useEffect(()=> {
         
         const getMovies = async () => {
-            const res = await fetch(`https://api.themoviedb.org/3/movie/${typeToDisplay}?api_key=aa9e4fb9176c3cfe803a8ef198c28c23&language=en-US&page=1`);
+            const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=aa9e4fb9176c3cfe803a8ef198c28c23&language=en-US&${sortquery}&include_adult=false&include_video=false&page=1${genrequery}`);
             let data = await res.json();
             
             let movies = data.results.map((mov)=>{
                 return(
                     <div className="movie" key={mov.id}>
-                         <a href={"single/"+mov.id}>
+                        <Link to={`website/movie-app/single/${mov.id}`}>
                         <img className="poster" src={"https://image.tmdb.org/t/p/w342" + mov.poster_path} alt="misc" />
                         
                         
                        
                             <div className="overview">
                                 
-                                <h3 className="movietitle">{mov.title} ({mov.release_date.split("-").slice(0,1)})</h3>
+                                <h3 className="movietitle">{mov.title} ({mov.release_date == null ? "..." : mov.release_date.split("-").slice(0,1)})</h3>
                                 
                                 <p>{mov.overview.substring(0, 300)}{mov.overview.length > 300 ? "..." : ''}</p>
                                 
                             </div>
                             <p className="moreinfo">More Info</p>
-                        </a>
+                        </Link>
                     </div>
                 )
             })
@@ -39,19 +43,12 @@ const Results = (props) => {
             
         }
         getMovies();
-    }, [typeToDisplay])
+    }, [genrequery, sortquery])
     
         return(
-        <div>
-            <Hero />
-          
             <div className="featuredmovies">
                 {results}
-            </div>
-            
-            
-            
-        </div>
+            </div>   
     );
     }
     

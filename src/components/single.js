@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import {
+    useParams
+  } from "react-router-dom";
+  
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 const Single = () => {
     const movieId = window.location.pathname.split("/").pop();
+    console.log(movieId);
+    //const movieId = 419704;
+    //const { movieId } = useParams();
+    //console.log(movieId);
     const [single, setSingle] = useState([]);
     const [reccomended, setReccomended] = useState([]);
     const [actors, setActors] = useState([]);
@@ -87,45 +95,20 @@ const Single = () => {
         getSingle();
     }, [movieId]);
 
-    
-    // const addToStorage = () => {
-    
-	
-    //     var existing = localStorage.getItem('favorites');
-
-    //     // If no existing data, create an array
-    //     // Otherwise, convert the localStorage string to an array
-    //     existing = existing ? JSON.parse(existing) : {};
-        
-    //     const value = {
-    //         id:single.id,
-    //         image:single.poster_path
-    //     }
-    //     // Add new data to localStorage Array
-    //     existing[single.id] = value;
-
-    //     // Save back to localStorage
-    //     localStorage.setItem('favorites', JSON.stringify(existing));
-    // }
     const addToStorage = () => {
     
 	
         // Parse any JSON previously stored in allEntries
     var existingEntries = JSON.parse(localStorage.getItem("favorites"));
     if(existingEntries == null) existingEntries = [];
-    // var entryTitle = document.getElementById("entryTitle").value;
-    // var entryText = document.getElementById("entryText").value;
-    // var entry = {
-    //     "title": entryTitle,
-    //     "text": entryText
-    // };
-    // localStorage.setItem("entry", JSON.stringify(single));
-    // Save allEntries back to local storage
+    
     existingEntries.push(single);
     localStorage.setItem("favorites", JSON.stringify(existingEntries));
-        
+    
+
     }
 
+    let favMessage = "Add to favorites"
     return(
             
         <div className="single" key={single.id}>
@@ -152,8 +135,8 @@ const Single = () => {
                         <p>Runtime: {single.runtime} Minutes</p>
                         <p>{single.overview}</p>
                         {/* <p>{single.id}</p> */}
-                        
-                        <input type="button" value="Add to Favorites" id="addToFavorites" onClick={addToStorage} />
+                        {}
+                        <input type="button" value={favMessage} id="addToFavorites" onClick={addToStorage} />
                     </div>
                 </div>
                 
