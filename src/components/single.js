@@ -75,14 +75,21 @@ const Single = () => {
             })
             setVideo(video);
 
-            let certificate = data.release_dates.results.slice(0, 1).map((cer)=>{
-                return(
-                    cer.release_dates.slice(0, 1).map((rat)=>{
-                    return(
-                        <p>{rat.certification}</p>
-                    )
-                })
+            // let certificate = data.release_dates.results.slice(0, 1).map((cer)=>{
+            //     return(
+            //         cer.release_dates.slice(0, 1).map((rat)=>{
+            //         return(
+            //             <p>{rat.certification}</p>
+            //         )
+            //     })
                
+            //     )
+                
+            // })
+            // setCertificate(certificate);
+            let certificate = data.release_dates.results.find(o => o.iso_3166_1 == "CA").release_dates.map((cer)=>{
+                return(
+                   <p>{cer.certification}</p>
                 )
                 
             })
