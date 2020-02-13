@@ -1,4 +1,5 @@
 import React, { useState} from 'react';
+import { NavLink } from 'react-router-dom';
 const Footer = () => {
     const [toTop, setToTop] = useState('');
    
@@ -24,7 +25,12 @@ const Footer = () => {
     return(
         <div className="footer">
             <button className={toTop} onClick={topFunction} id="toTopBtn" title="Go to top">Top</button>
-            <h3>Footer</h3>
+            <h3>Cinephile &copy;</h3>
+            <div className="footernav">
+              <NavLink to="/favorites">Favorites</NavLink>
+              <NavLink to="/about">About</NavLink>
+            </div>
+            
         </div>
     );
 }

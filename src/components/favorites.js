@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 
 const Favorites = () => {
@@ -14,25 +15,26 @@ const Favorites = () => {
         var keys = <p>You dont have any favorites!</p>;
 
     }else{
-         var newfav = JSON.parse(favoriteMovies);
+        var newfav = JSON.parse(favoriteMovies);
    
-        var keys = newfav.map((fav) =>{
+        var keys = newfav.map((mov) =>{
             return(
-                <div className="movie" key={fav.id}>
-                            <a href={"single/"+fav.id}>
-                            <img className="poster" src={"https://image.tmdb.org/t/p/w342" + fav.poster_path} alt="misc" />
-                            
-                            
+                <div className="movie" key={mov.id}>
+                        <Link to={`/single/${mov.id}`}>
+                        <img className="poster" src={"https://image.tmdb.org/t/p/w342" + mov.poster_path} alt="misc" />
                         
-                                <div className="overview">
-                                    <h3 className="movietitle">{fav.title} ({fav.release_date.split("-").slice(0,1)})</h3>
-                                    
-                                    <p>{fav.overview.substring(0, 300)}{fav.overview.length > 300 ? "..." : ''}</p>
-                                    
-                                </div>
-                                <p className="moreinfo">More Info</p>
-                            </a>
-                        </div>
+                        
+                       
+                            <div className="overview">
+                                
+                                <h3 className="movietitle">{mov.title} ({mov.release_date == null ? "..." : mov.release_date.split("-").slice(0,1)})</h3>
+                                
+                                <p>{mov.overview.substring(0, 300)}{mov.overview.length > 300 ? "..." : ''}</p>
+                                
+                            </div>
+                            <p className="moreinfo">More Info</p>
+                        </Link>
+                    </div>
             )
         });
     }

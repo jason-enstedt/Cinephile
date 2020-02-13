@@ -7,6 +7,7 @@ import CustomAutocomplete from './components/search';
 import Single from './components/single';
 import Funnel from './components/funnel';
 import Favorites from './components/favorites';
+import ScrollToTop from 'react-router-scroll-top';
 import './App.css';
 
 function App() {
@@ -15,19 +16,23 @@ function App() {
 
   return (
     <Router >
+      <ScrollToTop>
     <div className="App">
       <header>
         <Header />
         <CustomAutocomplete />
       </header>
+      <div className="container">
+        <Route path="/" exact><Funnel /></Route>
+        <Route path="/single"><Single /></Route>
+        <Route path="/website/movie-app/result"><Funnel /></Route>
+        <Route path="/favorites"><Favorites /></Route>
+      </div>
       
       
-      <Route path="/" exact><Funnel /></Route>
-      <Route path="/single"><Single /></Route>
-      <Route path="/website/movie-app/result"><Funnel /></Route>
-      <Route path="/favorites"><Favorites /></Route>
       <Footer />
     </div>
+    </ScrollToTop>
     </Router>
   );
 }

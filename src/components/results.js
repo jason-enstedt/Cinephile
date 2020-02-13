@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from "react-router-dom";
-import ScrollReveal from 'scrollreveal'
+
 
 const Results = (props) => {
     
@@ -20,10 +20,14 @@ const Results = (props) => {
             let data = await res.json();
             
             let movies = data.results.map((mov)=>{
+                if(mov.poster_path == null){
+
+                }
                 return(
                     <div className="movie" key={mov.id}>
                         <Link to={`/single/${mov.id}`}>
-                        <img className="poster" src={"https://image.tmdb.org/t/p/w342" + mov.poster_path} alt="misc" />
+                            
+                        <img className="poster" src={mov.poster_path == null ? process.env.PUBLIC_URL + '/images/noposter.png' : "https://image.tmdb.org/t/p/w342" + mov.poster_path} alt="misc" />
                         
                         
                        
@@ -45,7 +49,7 @@ const Results = (props) => {
         }
 
         getMovies();
-        ScrollReveal().reveal('.movie', {delay:2000});
+        
 
     }, [genrequery, sortquery])
     

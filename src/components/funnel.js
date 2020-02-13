@@ -88,7 +88,7 @@ const Funnel = () => {
 
       let genreInput = genres.genres.map((gen)=>{
           return(
-              <option value={gen.id}>{gen.name}</option>
+              <option key ={gen.id} value={gen.id}>{gen.name}</option>
           )
           
       });
@@ -103,24 +103,27 @@ const Funnel = () => {
       
     return(
         <div>
-        <Hero />
-
-        <select onChange={updateSort} id="sortSelect">
-            <option value="popularity.desc">Sort by...</option>
-            <option value="popularity.desc">Popularity &#x21e7;</option>
-            <option value="popularity.asc">Popularity &#x21e9;</option>
-            <option value="revenue.desc">Revenue &#x21e7;</option>
-            <option value="revenue.asc">Revenue &#x21e9;</option>
-            <option value="vote_average.desc">Rating &#x21e7;</option>
-            <option value="vote_average.asc">Rating &#x21e9;</option>
-            <option value="release_date.desc">Release date &#x21e7;</option>
-            <option value="release_date.asc">Release date &#x21e9;</option>
-        </select>
-        <select onChange={updateSearch} id="genreSelect">
-            <option value=''>All Genres</option>
-            {genreInput}
-        </select>
-        <Results genre={genreAll} sort={sortAll}/>   
+          <Hero />
+          <div className="resultsAndFilter">
+            <div className="filterInputs">
+              <select onChange={updateSort} id="sortSelect">
+                  <option value="popularity.desc">Sort by...</option>
+                  <option value="popularity.desc">Popularity &#x21e7;</option>
+                  <option value="popularity.asc">Popularity &#x21e9;</option>
+                  <option value="revenue.desc">Revenue &#x21e7;</option>
+                  <option value="revenue.asc">Revenue &#x21e9;</option>
+                  <option value="vote_average.desc">Rating &#x21e7;</option>
+                  <option value="vote_average.asc">Rating &#x21e9;</option>
+                  <option value="release_date.desc">Release date &#x21e7;</option>
+                  <option value="release_date.asc">Release date &#x21e9;</option>
+              </select>
+              <select onChange={updateSearch} id="genreSelect">
+                  <option value=''>All Genres</option>
+                  {genreInput}
+              </select>
+            </div>
+            <Results genre={genreAll} sort={sortAll}/>  
+          </div>
         </div>
        
     );
