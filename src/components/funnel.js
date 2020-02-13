@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import Results from './results';
 import Hero from './hero';
 const Funnel = () => {
-    const typeToDisplay = 'now_playing';
+    
     const [genreAll, setGenreAll] = useState('')
     const [sortAll, setSortAll] = useState('popularity.desc')
     const genres = {

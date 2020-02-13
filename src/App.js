@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {HashRouter as Router, Route} from "react-router-dom";
 import Header from './components/header';
 import Footer from './components/footer';
 
@@ -14,7 +14,7 @@ function App() {
   
 
   return (
-    <Router basename='/website/movie-app'  >
+    <Router >
     <div className="App">
       <header>
         <Header />
@@ -23,9 +23,9 @@ function App() {
       
       
       <Route path="/" exact><Funnel /></Route>
-      <Route path="/website/movie-app/single"><Single /></Route>
+      <Route path="/single"><Single /></Route>
       <Route path="/website/movie-app/result"><Funnel /></Route>
-      <Route path="/website/movie-app/favorites"><Favorites /></Route>
+      <Route path="/favorites"><Favorites /></Route>
       <Footer />
     </div>
     </Router>

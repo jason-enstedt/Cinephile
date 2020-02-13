@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import { Link } from 'react-router-dom';
 
 
   
@@ -62,10 +62,12 @@ const Search = () => {
       let movies = data.results.slice(0, 5).map((mov)=>{
           
           return(
-              <a href={"/single/" + mov.id} key={mov.id}>
+            <Link to={`/single/${mov.id}`} onClick={hideBar} >
+            
+              
               <li>
                 <div>
-                 <img className="searchImg" src={"https://image.tmdb.org/t/p/w500" + mov.poster_path} /> 
+                 <img className="searchImg" src={"https://image.tmdb.org/t/p/w500" + mov.poster_path} alt="movie poster" /> 
                 </div>
                 <div className="searchInfo">
                   <p>{mov.title}</p>
@@ -74,7 +76,7 @@ const Search = () => {
                 </div>
                 
               </li>
-              </a>
+             </Link>
           )
       })
       
@@ -84,7 +86,7 @@ const Search = () => {
     
   }
   getResults();
-  }, [input])
+  },[input])
 
   
   const hideBar = () => {
@@ -100,7 +102,10 @@ const Search = () => {
       
       <div className="resultlist">
         <ul>
+          
           {results}
+          
+          
         </ul>
       </div>
     

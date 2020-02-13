@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 const Footer = () => {
     const [toTop, setToTop] = useState('');
-    const [scrolling, setScrolling] = useState(false);
+   
     // mybutton = document.getElementById("toTopBtn");
     // window.onscroll = function() {scrollFunction()};
     if(window.onscroll){

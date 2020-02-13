@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -31,9 +32,9 @@ const Hero = () => {
                     <div className="words">
                     
                         <h2>{one.title}</h2>
-                        <a href={"/single/" + one.id}> 
+                        <Link to={`/single/${one.id}`}>
                             <p className="seeMore">More Info</p>
-                        </a>
+                        </Link>
                     </div>
                 
                 

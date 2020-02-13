@@ -2,8 +2,9 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://jenstedt.bcitwebdeveloper.ca/website/movie-app",
-  "dependencies":{
+  "homepage": "https://jenstedt.bcitwebdeveloper.ca/website/movie-app",
+  "start": "webpack-dev-server --inline --content-base . --history-api-fallback",
+  "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
@@ -15,6 +16,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-slick": "^0.25.2",
+    "scrollreveal": "^4.0.5",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
@@ -38,4 +40,5 @@
       "last 1 safari version"
     ]
   }
+  
 }

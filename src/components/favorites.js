@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 
 const Favorites = () => {
@@ -6,6 +6,7 @@ const Favorites = () => {
     
     
     const favoriteMovies = localStorage.getItem('favorites');
+    
     if(JSON.parse(localStorage.getItem("favorites")) == null | []){
         var existingEntries = JSON.parse(localStorage.getItem("favorites"));
         if(existingEntries == null) existingEntries = [];
