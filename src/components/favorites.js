@@ -9,9 +9,13 @@ const Favorites = () => {
     const favoriteMovies = localStorage.getItem('favorites');
     
     if(JSON.parse(localStorage.getItem("favorites")) == null | []){
+
         var existingEntries = JSON.parse(localStorage.getItem("favorites"));
+
         if(existingEntries == null) existingEntries = [];
+
         localStorage.setItem("favorites", JSON.stringify(existingEntries));
+        
         var keys = <p>You dont have any favorites!</p>;
 
     }else{

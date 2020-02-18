@@ -49,6 +49,7 @@ header .title a {
   top:0;
   width:100%;
 }
+
 header{
   position: relative;
   background-color: rgb(19, 19, 19);
@@ -61,6 +62,21 @@ display:block;
 position: absolute;
 top:0;
 width:100%;
+
+}
+@media screen and (min-width:1100px){
+  .searchBar{
+    opacity:1;
+    z-index:1000;
+    display:block;
+    width:30%;
+    position: absolute;
+    right:0;
+  }
+  .show{
+    width:30%;
+
+  }
 
 }
 #menuBtn{
@@ -93,6 +109,12 @@ width:100%;
   border:none;
   cursor:pointer;
 }
+@media screen and (min-width:1100px){
+  #hideBtn{
+    display:none;
+}
+}
+
 #menuBtn svg{
   width:50px;
 }
@@ -121,6 +143,7 @@ svg{
   background-color: rgb(32, 32, 32);
   width:100%;
 }
+
 .show .resultlist{
   transition: all .2s;
   position: absolute;
@@ -164,6 +187,18 @@ color:rgb(255, 255, 255);
 }
 .resultlist li:hover{
   background-color: grey;
+}
+@media screen and (min-width:1100px){
+  .resultlist{
+    width:100%;
+    right:0;
+    top:64px;
+  }
+  #searchField{
+    width:100%;
+    border-top-left-radius:50px ;
+    border-bottom-left-radius: 50px;
+  }
 }
 .main-nav{
   
@@ -361,7 +396,7 @@ background-color: grey;
   width:46%;
   background-color: rgba(0, 0, 0, 0);
   position: relative;
-  margin-top: 16px;
+  margin-top: 10px;
   box-shadow:3px 8px 10px 6px rgba(0, 0, 0, 0.925);
 }
 @media screen and (min-width:450px) {
@@ -438,14 +473,14 @@ background-color: grey;
   width:100%;
  color:white;
  position: absolute;
- bottom:0;
+ bottom:5px;
  font-size:1.5em;
  background-color: rgba(128, 128, 128, 0.589);
  z-index: 900;
 
 }
 .single{
-  background-color: white;
+  background-color: rgb(0, 0, 0);
   max-width: 1200px;
   margin: auto;
   
@@ -457,20 +492,11 @@ background-color: grey;
   color:white;
 }
 .single .backdrop{
-  
-  
   max-height:50vh;
   object-fit: cover;
   object-position: 0 0;
 }
-/* .single-wrapper{
-  position: relative;
-}
-.single .single-wrapper .poster{
-  position: absolute;
-  width:150px;
-  top:50%;
-} */
+
 .single-hero{
   position: relative;
   
@@ -503,8 +529,17 @@ background-color: grey;
   display:flex;
   flex-wrap:wrap;
   justify-content: space-evenly;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
 
+}
+.certificate{
+  width:15%;
+  text-align: left;
+  font-size: 2em;
+}
+.genres-all p{
+  margin-top: 5px;
+  margin-right: 5px;
 }
 .genres-all p {
   border: 1px white solid;
@@ -522,9 +557,13 @@ background-color: grey;
   text-align: center; */
   width:100%;
   display:flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding-bottom: 10px;
   
+}
+.secondsinglerow{
+  width:100%;
+  display:flex;
 }
 .single-vote{
   font-size: 2.5em;
@@ -665,4 +704,21 @@ background-color: grey;
 .footernav{
   display:flex;
   justify-content: space-evenly;
+}
+.about{
+  color:white;
+  text-align: left;
+  padding: 10px;
+  /* display:flex;
+  flex-direction: column;
+  align-items: center; */
+  max-width: 800px;
+  margin:auto;
+}
+.about p{
+  padding-top: 30px;
+}
+.about img{
+  width:200px;
+  padding-top: 50px;
 }

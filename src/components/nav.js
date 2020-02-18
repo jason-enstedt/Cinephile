@@ -2,10 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
+
     const unReveal = () => {
+        
             var unReveal = document.getElementById('main-nav');
+            
             unReveal.classList.remove('reveal');
-            document.body.classList.remove('stop-scroll');
+            // document.body.classList.remove('stop-scroll');
         }
     return(
         
@@ -18,7 +21,8 @@ const Nav = () => {
               
                 <ul>
                    <NavLink to="/" exact onClick={unReveal}> <li>Home</li></NavLink>
-                    <NavLink to="/favorites" onClick={unReveal}><li>Favorites</li></NavLink>     
+                    <NavLink to="/favorites" onClick={unReveal}><li>Favorites</li></NavLink>
+                    <NavLink to="/about" onClick={unReveal}><li>About</li></NavLink>     
                 </ul>
            </nav>
         </div>

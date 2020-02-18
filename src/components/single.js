@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Slider from "react-slick";
+import {Link} from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 const Single = () => {
     
     const location = useLocation();
@@ -43,10 +45,10 @@ const Single = () => {
             let reccomended = data.recommendations.results.map((mov)=>{
                 return(
                     <div className="reccomended" key={mov.id}>
-                        <a href={"single/"+mov.id}>
+                        <Link to={"/single/"+mov.id}>
                         <img className="poster" src={"https://image.tmdb.org/t/p/w342" + mov.poster_path} alt="misc" />
                     
-                        </a>
+                        </Link>
                     </div>
                 )
             })
@@ -74,26 +76,18 @@ const Single = () => {
                 )
             })
             setVideo(video);
-
-            // let certificate = data.release_dates.results.slice(0, 1).map((cer)=>{
-            //     return(
-            //         cer.release_dates.slice(0, 1).map((rat)=>{
-            //         return(
-            //             <p>{rat.certification}</p>
-            //         )
-            //     })
-               
-            //     )
-                
-            // })
-            // setCertificate(certificate);
-            let certificate = data.release_dates.results.find(o => o.iso_3166_1 == "CA").release_dates.map((cer)=>{
+            let certificate = data.release_dates.results.find(o => o.iso_3166_1 == "US");
+            if(certificate == null){
+                setCertificate("unknown");
+                return;
+            }
+            let certificateNew = certificate.release_dates.splice(0,1).map((cer)=>{
                 return(
-                   <p>{cer.certification}</p>
+                   <p className="certificate" key={cer.id}>{cer.certification}</p>
                 )
                 
             })
-            setCertificate(certificate);
+            setCertificate(certificateNew);
             
         }
         var existingEntries = JSON.parse(localStorage.getItem("favorites"));
@@ -102,7 +96,7 @@ const Single = () => {
             setFav("btnNotFav");
         } else{
             var foundValue = existingEntries.find(o => o.id == movieId);
-            console.log(foundValue);
+            
             if(foundValue == undefined ){
                 setFav("btnNotFav");
             }else{
@@ -116,50 +110,27 @@ const Single = () => {
     }, [location]);
 
 
-    console.log(movieId);
-    // var existingEntries = JSON.parse(localStorage.getItem("favorites"));
-    //     if(existingEntries == null){
-    //         existingEntries = [];
-    //         var favMessage = "Add to Favorites"
-    //     } else{
-    //         var foundValue = existingEntries.find(o => o.id == movieId);
-    //         console.log(foundValue);
-    //         if(foundValue == undefined ){
-    //             var favMessage = "Add to Favorites";
-    //         }else{
-                
-    //             var favMessage = "Favorited";
-                
-    //         }
-    //     }
     
 
+
     const addToStorage = () => {
-    
-	
-            // Parse any JSON previously stored in allEntries
         var existingEntries = JSON.parse(localStorage.getItem("favorites"));
+
         if(existingEntries == null) existingEntries = [];
 
         var foundValue = existingEntries.filter(obj=>obj.id == movieId);
-        console.log("found value",foundValue);
-        
+
         if(foundValue == undefined | foundValue.length == 0){
+
             existingEntries.push(single);
             localStorage.setItem("favorites", JSON.stringify(existingEntries));
             setFav("btnFav");
-            console.log("local", existingEntries);
         }else{
+
             let newArray = existingEntries.filter(x => x.id != movieId);
-            console.log(newArray);
             localStorage.setItem("favorites", JSON.stringify(newArray));
             setFav("btnNotFav");
-            
-
         }
-    
-    
-
     }
 
     
@@ -177,17 +148,19 @@ const Single = () => {
                     <img className="poster" src={"https://image.tmdb.org/t/p/w342" + single.poster_path} alt="misc" />
                     <div className="single-main-content">
                         <div className="single-header">
-                        <button className={fav} id="addToFavorites" onClick={addToStorage}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg></button>
 
-                            <p className="single-vote">{single.vote_average}</p>  
+                            <p className="single-vote">{single.vote_average * 10}%</p>  
                             <h3 className="movietitle">{single.title}<br /> ({single.release_date})</h3>
+                            <button className={fav} id="addToFavorites" onClick={addToStorage}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg></button>
+
                         </div>
-                  
+                        <div className="secondsinglerow">
+                            {certificate}
+                            <div className="genres-all">
+                            {genres} 
+                            </div>
+                        </div>
                         
-                        {certificate}
-                        <div className="genres-all">
-                           {genres} 
-                        </div>
                         <p>Runtime: {single.runtime} Minutes</p>
                         <p>{single.overview}</p>
                         {/* <input type="button" value={fav} id="addToFavorites" onClick={addToStorage} /> */}

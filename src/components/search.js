@@ -62,7 +62,7 @@ const Search = () => {
       let movies = data.results.slice(0, 5).map((mov)=>{
           
           return(
-            <Link to={`/single/${mov.id}`} onClick={hideBar} >
+            <Link to={`/single/${mov.id}`} onClick={resetInput} >
             
               
               <li>
@@ -92,6 +92,16 @@ const Search = () => {
   const hideBar = () => {
     var bar = document.getElementById('searchBar');
     bar.classList.remove('show');
+  }
+  const resetInput = () => {
+    let input = document.getElementById('searchField');
+
+    input.value = '';
+    if(document.getElementById('searchField').value === ''){
+      setInput('');
+      var bar = document.getElementById('searchBar');
+      bar.classList.remove('show');
+  }
   }
   return(
     <div className="searchBar" id="searchBar">
